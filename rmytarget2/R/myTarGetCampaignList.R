@@ -24,5 +24,3 @@ myTarGetCampaignList <-
     campList <- data.frame(do.call("rbind", result))
     return(campList)
   }
-
-camp <- myTarGetCampaignList2(login = "tetser1", token_path = "C:\\Users\\Alexey\\Documents\\")
