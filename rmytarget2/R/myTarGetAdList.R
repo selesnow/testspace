@@ -42,5 +42,4 @@ myTarGetAdList <-
     adsList <- data.frame(do.call("rbind", result))
     return(adsList)
 }
-rm(limit)
-ads <- myTarGetAdList2(login = "tetser1", token_path = "C:\\Users\\Alexey\\Documents\\") 
+
