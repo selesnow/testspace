@@ -104,7 +104,10 @@ myTarGetStats <-
         utils::setTxtProgressBar(pb, pb_step)}
     }    
     
-    close(pb)
+    if ( exists("pb") ) {
+      close(pb)
+    }
+	
     message("end-loading--------------->")
     message("Create result table.")
     
