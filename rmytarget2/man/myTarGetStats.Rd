@@ -143,7 +143,7 @@ For example: metrics = c("base", "video", "viral")
    \item{human_and_viewable_perc}{Percentage of visible hits}
    \item{never_focused_percent}{Verified impression percentage}
    \item{never_visible_percent}{Impression percentage in inactive tab}
-   \item{never_50_perc_visible_percent}{The percentage of orders with a zone of visibility of the ad is less than 50%}
+   \item{never_50_perc_visible_percent}{The percentage of orders with a zone of visibility of the ad is less than 50 percent}
    \item{never_1_sec_visible_percent}{Percentage of impressions with visibility duration less than 1 second}
    \item{in_view_diff_percent}{Visible impression difference}
    \item{active_in_view_time}{Average time the ad is in view}
