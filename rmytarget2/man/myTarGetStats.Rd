@@ -21,7 +21,7 @@ myTarGetStats(date_from   = Sys.Date() - 7,
   \item{object_type}{API object typr, character value, apply one of campaigns, banners,pad_groups,pads,users}
   \item{object_id}{ID of API object (id campaign or any object}
   \item{stat_type}{Time stap, get value day or hour}
-  \item{metrics}{Set of metrics, see metrics section for more ditali, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{link}}
+  \item{metrics}{Set of metrics, see metrics section for more ditali, default "base", but you can load any of all, base, events, video, viral, uniques, tps, or go this \href{https://target.my.com/adv/api-marketing/doc/stat-v2}{link}}
   \item{auth}{R auth object}
   \item{token_path}{Path to directory where you save credential data}
   \item{login}{Your login, or client name in MyTarget account}
