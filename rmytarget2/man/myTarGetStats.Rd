@@ -80,21 +80,21 @@ For example: metrics = c("base", "video", "viral")
    \item{sound_turned_off}{Number of video mute}
    \item{sound_turned_on}{Number of video sound starts}
    \item{viewed_10_seconds}{Number of views of the first 10 seconds of the video}
-   \item{viewed_25_percent}{Number of views of the first 25% of the video duration}
-   \item{viewed_50_percent}{Number of views of the first 50% of the video duration}
-   \item{viewed_75_percent}{Number of views of the first 75% of the video duration}
+   \item{viewed_25_percent}{Number of views of the first 25 percent of the video duration}
+   \item{viewed_50_percent}{Number of views of the first 50 percent of the video duration}
+   \item{viewed_75_percent}{Number of views of the first 75 of the video duration}
    \item{viewed_100_percent}{Number of views 100% of the video duration}
    \item{viewed_10_seconds_rate}{Percentage of views with the achievement of the first 10 seconds of the video}
-   \item{viewed_25_percent_rate}{Percentage of views with the achievement of the first 25% of the video duration}
-   \item{viewed_50_percent_rate}{Percentage of views with the achievement of the first 50% of the video duration}
-   \item{viewed_75_percent_rate}{Percentage of views with the achievement of the first 75% of the video duration}
-   \item{viewed_100_percent_rate}{Percentage of views with the achievement of the first 100% of the video duration}
+   \item{viewed_25_percent_rate}{Percentage of views with the achievement of the first 25 percent of the video duration}
+   \item{viewed_50_percent_rate}{Percentage of views with the achievement of the first 50 percent of the video duration}
+   \item{viewed_75_percent_rate}{Percentage of views with the achievement of the first 75 percent of the video duration}
+   \item{viewed_100_percent_rate}{Percentage of views with the achievement of the first 100 percent of the video duration}
    \item{depth_of_view}{Average video viewing depth (percent)}
    \item{view_10_seconds_cost}{Average cost of watching the first 10 seconds of a video}
-   \item{viewed_25_percent_cost}{Average viewing cost of the first 25% of video length}
-   \item{viewed_50_percent_cost}{Average viewing cost of the first 50% of video length}
-   \item{viewed_75_percent_cost}{Average viewing cost of the first 75% of video length}
-   \item{viewed_100_percent_cost}{Average viewing cost of the first 100% of video length}
+   \item{viewed_25_percent_cost}{Average viewing cost of the first 25 percent of video length}
+   \item{viewed_50_percent_cost}{Average viewing cost of the first 50 percent of video length}
+   \item{viewed_75_percent_cost}{Average viewing cost of the first 75 percent of video length}
+   \item{viewed_100_percent_cost}{Average viewing cost of the first 100 percent of video length}
  }
  
 \strong{viral - metrics of viral events.}
