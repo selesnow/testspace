@@ -83,7 +83,7 @@ For example: metrics = c("base", "video", "viral")
    \item{viewed_25_percent}{Number of views of the first 25 percent of the video duration}
    \item{viewed_50_percent}{Number of views of the first 50 percent of the video duration}
    \item{viewed_75_percent}{Number of views of the first 75 of the video duration}
-   \item{viewed_100_percent}{Number of views 100% of the video duration}
+   \item{viewed_100_percent}{Number of views 100 percent of the video duration}
    \item{viewed_10_seconds_rate}{Percentage of views with the achievement of the first 10 seconds of the video}
    \item{viewed_25_percent_rate}{Percentage of views with the achievement of the first 25 percent of the video duration}
    \item{viewed_50_percent_rate}{Percentage of views with the achievement of the first 50 percent of the video duration}
