@@ -33,7 +33,7 @@ Data frame with statistic.
 \section{Sets of metrics}{
 You can load different sets of metrics, for this use metrics arguments, and set a vector containing the names of the desired metric sets.
 
-Base
+\strong{Base}
  \describe{
    \item{shows}{Number of impressions}
    \item{clicks}{Number of clicks}
