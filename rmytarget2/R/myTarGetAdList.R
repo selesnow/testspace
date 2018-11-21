@@ -32,7 +32,7 @@ myTarGetAdList <-
        
          result <- append(result, list(temp))
          rm(temp)
-         Sys.sleep(1)
+         Sys.sleep(0.2)
       }
       
       count  <- adsRaw$count
