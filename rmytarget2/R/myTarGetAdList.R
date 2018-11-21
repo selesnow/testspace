@@ -48,3 +48,4 @@ myTarGetAdList <-
     adsList <- data.frame(do.call("rbind", result))
     return(adsList)
   }
+
