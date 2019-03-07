@@ -5,9 +5,7 @@ Version: 0.0.0
 Date: 2018-11-21
 Author: Alexey Seleznev
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
-Description: Allows work with 'MyTarget API v2' <https://target.my.com/doc/apiv2/ru/detailed.html> and
-    load data by ads, campaigns, agency clients and statistic from
-    your ads account.
+Description: Is testing workspace.
 URL: http://selesnow.github.io/rmytarget
 Imports: httr, jsonlite, dplyr, lubridate, stringr
 Depends: R (>= 3.5.0)
