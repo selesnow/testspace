@@ -76,7 +76,7 @@ myTarGetStats <-
       if ( !is.null(temp_all_data$error) ) {
         stop( temp_all_data$error$code, ": ", temp_all_data$error$message)
       }
-      
+      return(temp_all_data)
       # daily stat
       if ( stat_type == "day" ) {
         # start cycle by each element, object
