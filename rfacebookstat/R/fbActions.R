@@ -1,6 +1,6 @@
 # action hander 
 # https://developers.facebook.com/docs/marketing-api/reference/ads-action-stats/
-# variables
+
 name <- NULL
 val  <- NULL
 .    <- NULL
@@ -8,7 +8,17 @@ type <- NULL
 
 # create methode
 fbAction <- function(x, ...) {
+  
+  if ( getOption("stringsAsFactors") ) {
+    strasfaccheck <- T
+    options(stringsAsFactors = F)
+  }
+    
   UseMethod("fbAction", x)
+  
+  if ( strasfaccheck ) {
+    options(stringsAsFactors = T)
+  }
 }
 
 # cteate parser of all methods
@@ -16,7 +26,7 @@ fbAction <- function(x, ...) {
 # actions
 # ============
 fbAction.actions <- function( obj ) {
-  
+ 
   # action breakdown handing
     tempData <- list()
     
@@ -25,15 +35,17 @@ fbAction.actions <- function( obj ) {
       if ( ! is.null(o1$actions) ) {
         
         r <- lapply(o1$actions, function(x) list(name = x$action_type,
-                                                 val = x$value)) %>%
-          map_df(flatten) %>%
-          unique() %>%
-          spread(key = name, value = val)
+                                                 val  = x$value)) %>%
+            map_df(flatten) %>%
+            unique() %>%
+            spread(key = name, value = val)
 
         
         f <-  o1[! names(o1) == "actions"] %>%
-          do.call("cbind", .) %>%
-          cbind(., r)
+              do.call("cbind", .) %>% 
+              data.frame(stringAsFactor = F) %>% 
+              cbind(., r) %>%
+              lapply( as.character )
         
       } else {
         f <-  o1[ ! names(o1) == "actions" ] %>%
@@ -70,7 +82,8 @@ fbAction.action_device <- function( obj ) {
       
       f <-  o1[! names(o1) == "actions"] %>%
         do.call("cbind", .) %>%
-        cbind(., r)
+        cbind(., r) %>%
+        lapply( as.character )
       
     } else {
       f <-  o1[ ! names(o1) == "actions" ] %>%
@@ -102,14 +115,14 @@ fbAction.action_destination <- function( obj ) {
                                                val  = x$value)) %>%
             map_df(flatten) %>%
             group_by(name) %>%
-            summarise(val = sum( as.integer(val))) %>%
+            summarise(val = sum( as.integer(val) )) %>%
             unique() %>%
-            spread(key = name, value = val)
-      
+            spread(key = name, value = val) 
       
       f <-  o1[! names(o1) == "actions"] %>%
         do.call("cbind", .) %>%
-        cbind(., r)
+        cbind(., r) %>%
+        lapply( as.character )
       
     } else {
       f <-  o1[ ! names(o1) == "actions" ] %>%
@@ -152,7 +165,8 @@ fbAction.action_reaction <- function( obj ) {
       
       f <-  o1[! names(o1) == "actions"] %>%
         do.call("cbind", .) %>%
-        cbind(., r)
+        cbind(., r) %>%
+        lapply( as.character )
       
     } else {
       f <-  o1[ ! names(o1) == "actions" ] %>%
@@ -186,7 +200,8 @@ fbAction.action_target_id <- function( obj ) {
       
       f <-  o1[! names(o1) == "actions"] %>%
                 do.call("cbind", .) %>%
-                cbind(., r)
+                cbind(., r) %>%
+        lapply( as.character )
       
     } else {
       f <-  o1[ ! names(o1) == "actions" ] %>%
@@ -222,7 +237,8 @@ fbAction.action_type <- function( obj ) {
       
       f <-  o1[! names(o1) == "actions"] %>%
         do.call("cbind", .) %>%
-        cbind(., r)
+        cbind(., r) %>%
+        lapply( as.character )
       
     } else {
       f <-  o1[ ! names(o1) == "actions" ] %>%
