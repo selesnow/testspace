@@ -45,7 +45,7 @@ fbGetMarketingStat <-
                               action_breakdowns, 
                               "actions")
 
-                   
+    if ( is.na(answer_class) ) answer_class <- "actions"
     
     if(interval == "overall"){
       dates_from <- as.Date(date_start)
