@@ -40,7 +40,8 @@ fbGetMarketingStat <-
                                                       "action_reaction",
                                                       "action_target_id",
                                                       "action_type",
-                                                      "action_type,action_reaction"),
+                                                      "action_type,action_reaction") &&
+                             ! is.null(action_breakdowns),
                               action_breakdowns, 
                               "actions")
 
