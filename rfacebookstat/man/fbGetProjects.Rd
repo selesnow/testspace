@@ -3,8 +3,8 @@
 \title{Get project list}
 \description{Load data about all avable projects}
 \usage{
-fbGetProjects(bussiness_id = NULL, api_version = "v3.1",
-                   access_token = NULL)
+fbGetProjects(bussiness_id = NULL, api_version = getOption("rfacebookstat.api_version"),
+                   access_token = getOption("rfacebookstat.access_token"))
 }
 
 \arguments{

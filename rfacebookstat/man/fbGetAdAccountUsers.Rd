@@ -3,10 +3,11 @@
 \title{Get avable business Managers.}
 \description{fbGetAdAccountUsers get data frame with adaccounts user list in R.}
 \usage{
-fbGetAdAccountUsers(accounts_id = NULL, 
-                    api_version = "v3.1", 
-					console_type = "progressbar", 
-					access_token = NULL)
+fbGetAdAccountUsers(
+    accounts_id  = getOption("rfacebookstat.accounts_id"), 
+    api_version  = getOption("rfacebookstat.api_version"), 
+	console_type = "progressbar", 
+	access_token = getOption("rfacebookstat.access_token"))
 }
 
 \arguments{

@@ -4,8 +4,8 @@
 \description{fbGetAdAccounts get data frame with avable in your bussines manager ad account list in R.}
 \usage{
 fbGetAdAccounts(source_id = NULL, 
-                api_version = "v3.1", 
-				access_token = NULL)
+                api_version = getOption("rfacebookstat.api_version"), 
+				access_token = getOption("rfacebookstat.access_token"))
 }
 
 \arguments{
