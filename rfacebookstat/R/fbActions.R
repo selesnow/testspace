@@ -9,16 +9,8 @@ type <- NULL
 # create methode
 fbAction <- function(x, ...) {
   
-  if ( getOption("stringsAsFactors") ) {
-    strasfaccheck <- T
-    options(stringsAsFactors = F)
-  }
-    
   UseMethod("fbAction", x)
   
-  if ( strasfaccheck ) {
-    options(stringsAsFactors = T)
-  }
 }
 
 # cteate parser of all methods
@@ -43,7 +35,6 @@ fbAction.actions <- function( obj ) {
         
         f <-  o1[! names(o1) == "actions"] %>%
               do.call("cbind", .) %>% 
-              data.frame(stringAsFactor = F) %>% 
               cbind(., r) %>%
               lapply( as.character )
         
