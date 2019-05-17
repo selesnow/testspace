@@ -108,7 +108,7 @@ fbGetMarketingStat <-
                                          fields             = fields,
                                          filtering          = filtering,
                                          action_report_time = action_report_time,
-                                         time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
+                                         time_range         = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
                                          limit              = 5000,
                                          access_token       = access_token))
         # check limit
