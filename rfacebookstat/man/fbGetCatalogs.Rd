@@ -1,9 +1,9 @@
-\name{fbGetProjects}
-\alias{fbGetProjects}
-\title{Get project list}
-\description{Load data about all avable projects}
+\name{fbGetCatalogs}
+\alias{fbGetCatalogs}
+\title{Get catalogs}
+\description{Load catalogs from business maneger.}
 \usage{
-fbGetProjects(bussiness_id = NULL, api_version = getOption("rfacebookstat.api_version"),
+fbGetCatalogs(bussiness_id = NULL, api_version = getOption("rfacebookstat.api_version"),
                    access_token = getOption("rfacebookstat.access_token"))
 }
 
@@ -19,7 +19,7 @@ fbGetProjects(bussiness_id = NULL, api_version = getOption("rfacebookstat.api_ve
 
 \examples{
 \dontrun{
-fbProject <- fbGetProjects(bussiness_id = "xxxxxxxxx", 
-                           access_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-}
+bc <- fbGetCatalogs(business_id = 1111111111,
+                    access_token = "xxxxxxxx")
+ }
 }
