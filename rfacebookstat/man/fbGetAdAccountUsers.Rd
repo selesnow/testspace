@@ -1,6 +1,6 @@
 \name{fbGetAdAccountUsers}
 \alias{fbGetAdAccountUsers}
-\title{Get avable business Managers.}
+\title{Get User List From Account}
 \description{fbGetAdAccountUsers get data frame with adaccounts user list in R.}
 \usage{
 fbGetAdAccountUsers(
@@ -13,7 +13,7 @@ fbGetAdAccountUsers(
 
 \arguments{
   \item{accounts_id}{vector with ID of your ad account, for example c("act_00001","act_00002").}
-  \item{bussiness_id}{ID by your Business Manager}
+  \item{business_id}{ID by your Business Manager}
   \item{access_token}{Your facebook API token.}
   \item{console_type}{Console output type, "progressbar" or "message"}
   \item{api_version}{Current Facebook API version.}
