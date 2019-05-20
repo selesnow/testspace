@@ -17,6 +17,8 @@ export(fbGetCampaigns)
 export(fbGetCatalogs)
 importFrom(RCurl, getURL)
 importFrom(jsonlite, fromJSON)
+importFrom(jsonlite, toJSON
+importFrom(jsonlite, validate)
 importFrom(httr, GET)
 importFrom(httr, POST)
 importFrom(httr, DELETE)
