@@ -23,7 +23,7 @@ fbGetMarketingStat(
   \item{action_breakdowns}{group results in the actions field. You can use the following breakdowns for action_breakdowns, for details go - https://developers.facebook.com/docs/marketing-api/insights/breakdowns/#actionsbreakdown}
   \item{breakdowns}{Permutations marked with an asterisk (*) can be joined with action_type and action_target_id. Avable age, country, gender, frequency_value, hourly_stats_aggregated_by_advertiser_time_zone, hourly_stats_aggregated_by_audience_time_zone, impression_device, place_page_id, placement, device_platform, product_id, region}
   \item{fields}{List of fields which you want get in R.}
-  \item{filtering}{Array of filtring parameters, on example [{/'field/':/'ad.effective_status/',/'operator/':/'IN/',/'value/':[/'ARCHIVED/']}}
+  \item{filtering}{Vector of filtring or JSON string with array of filtring parameters, on example \code{"ad.effective_status IN ARCHIVED"} \code{[{/'field/':/'ad.effective_status/',/'operator/':/'IN/',/'value/':[/'ARCHIVED/']}}, see filtring block for more examplew
   \item{date_start}{Start reporting date.}
   \item{date_stop}{End reporting day}
   \item{request_speed}{Speed beetwen API request, "normal", "fast" or "slow", depend of you API access level.}
@@ -81,16 +81,25 @@ Now you can use next action breakdowns:
 }
 
 \section{Filtering}{
-Filters on the report data. This parameter is an array of filter objects in JSON format.
+Filters on the report data. This parameter is an array of filter objects.
+You can set string vector or JSON string with field, operator and value.
 \describe{
   \item{field}{Field for filtering.}
   \item{operator}{One of EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IN_RANGE, NOT_IN_RANGE, CONTAIN, NOT_CONTAIN, IN, NOT_IN, STARTS_WITH, ANY, ALL, AFTER, BEFORE, NONE.}
   \item{value}{Field value for filtering.}
  }
- 
- Example: \code{filtering = "[{‘field’:’publisher_platform’,’operator’:’IN’,’value’:[‘instagram’]}]"}
+ Simple filtring:
+ \describe{
+   \item{Example vector}{\code{filtering = "publisher_platform IN instagram"}}
+   \item{Example JSON}{\code{filtering = "[{'field':'publisher_platform','operator':'IN','value':['instagram']}]"}}
+ Example of using two or more conditions: \code{filtering = "[{'field':'clicks','operator':'LESS_THAN','value':500},{'field':'impressions','operator':'GREATER_THAN','value':20000}]"}
 }
-
+Filtring by two or more conditions:
+\describe{
+   \item{Example vector}{\code{filtering = c("clicks LESS_THAN 500", "impressions GREATER_THAN 20000")}}
+   \item{Example JSON}{\code{filtering = '[{"field":"clicks","operator":"LESS_THAN","value":"500"},{"field":"impressions","operator":"GREATER_THAN","value":"20000"}]'}}
+   }
+}
 \author{Alexey Seleznev}
 
 \seealso{
