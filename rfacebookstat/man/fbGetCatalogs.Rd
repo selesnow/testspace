@@ -9,7 +9,7 @@ fbGetCatalogs(business_id  = getOption("rfacebookstat.business_id") ,
 }
 
 \arguments{
-  \item{bussiness_id}{ID by your Business Manager}
+  \item{business_id}{ID by your Business Manager}
   \item{api_version}{Current Facebook API version.}
   \item{access_token}{Your API facebook token}
 }
