@@ -39,7 +39,7 @@ fbGetMarketingStat(
 Console_type parameters, if chose "progressbar" you can see load progress in percent, and if chose "message" you get message about loading process.
 }
 
-\section{Breackdowns}{
+\section{Breakdowns}{
 Allowed values for breakdowns.
 \itemize{
   \item ad_format_asset
@@ -67,7 +67,7 @@ Allowed values for breakdowns.
  }
 }
 
-\section{Action breackdowns}{
+\section{Action Breakdowns}{
 Group results in the actions field. You can use the following breakdowns for action_breakdowns.
 Now you can use next action breakdowns:
 \describe{
@@ -78,6 +78,32 @@ Now you can use next action breakdowns:
   \item{action_type}{The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.}
   \item{action_type,action_reaction}{Together of action types and reactions brekdown.}
  }
+}
+
+\section{Available Combinations Of Breakdowns}{
+Grouping types marked with an asterisk (*) can be combined with action_type, action_target_id, and action_destination (action_target_id).
+\itemize{
+  \item action_type *
+  \item action_target_id *
+  \item action_device *
+  \item action_device, impression_device *
+  \item action_device, publisher_platform *
+  \item action_device, publisher_platform, impression_device *
+  \item action_device, publisher_platform, platform_position *
+  \item action_device, publisher_platform, platform_position, impression_device *
+  \item action_reaction
+  \item action_type, action_reaction
+  \item age *
+  \item gender *
+  \item age, gender *
+  \item country *
+  \item region *
+  \item publisher_platform *
+  \item publisher_platform, impression_device *
+  \item publisher_platform, platform_position *
+  \item publisher_platform, platform_position, impression_device *
+  \item product_id *
+}
 }
 
 \section{Filtering}{
