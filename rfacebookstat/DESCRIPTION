@@ -1,7 +1,7 @@
 Package: rfacebookstat
 Type: Package
 Title: Load Data from Facebook API Marketing
-Version: 1.8.7.9011
+Version: 1.8.7.9012
 Date: 2019-05-20
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
@@ -11,3 +11,6 @@ BugReports: https://github.com/selesnow/rfacebookstat/issues
 Imports: data.table, httr, RCurl, bitops, jsonlite, dplyr, purrr, tidyr, stringr
 URL: http://selesnow.github.io/rfacebookstat
 License: GPL-2
+Suggests: knitr, rmarkdown
+Encoding: UTF-8
+Language: ru
