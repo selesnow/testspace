@@ -53,21 +53,18 @@ fbGetMarketingStat <-
         
         filters <- list()
         
-        for ( f in filtering ) {
-          # convert filters to JSON
-          temp_filter <- str_split(f, " ")
-          temp_filter <- list(field    = temp_filter[[1]][1],
-                              operator = temp_filter[[1]][2],
-                              value    = ifelse( toupper(temp_filter[[1]][2]) %in% c("IN_RANGE", 
-                                                                                     "NOT_IN_RANGE", 
-                                                                                     "IN", 
-                                                                                     "NOT_IN"), 
-                                                 list(temp_filter[[1]][3]), 
-                                                 temp_filter[[1]][3]))
-          
-          filters <- append(filters, list(temp_filter))
-          
-        }
+		for ( f in filstr ) {
+		  temp_fil    <- str_split(f, " ")
+		  temp_filter <- list(field    = temp_fil[[1]][1],
+							  operator = temp_fil[[1]][2])
+		  
+		  if ( temp_fil[[1]][2] %in% c("IN_RANGE", "NOT_IN_RANGE", "IN", "NOT_IN") ) {
+			temp_filter$value <- str_split(temp_fil[[1]][3], ",")[[1]]
+		  } else {
+			temp_filter$value <- temp_fil[[1]][3]
+		  }
+		  filters <- append(filters, list(temp_filter))
+		}
         filtering <- toJSON(filters, auto_unbox = T)
       }
     }
