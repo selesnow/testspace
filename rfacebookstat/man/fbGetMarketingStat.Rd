@@ -99,6 +99,12 @@ Filtring by two or more conditions:
    \item{Example vector}{\code{filtering = c("clicks LESS_THAN 500", "impressions GREATER_THAN 20000")}}
    \item{Example JSON}{\code{filtering = '[{"field":"clicks","operator":"LESS_THAN","value":"500"},{"field":"impressions","operator":"GREATER_THAN","value":"20000"}]'}}
    }
+Filtring with operators IN_RANGE, NOT_IN_RANGE, IN, NOT_IN
+'publisher_platform IN instagram,facebook',
+\describe{
+   \item{Example vector}{\code{filtering = 'publisher_platform IN instagram,facebook'}}
+   \item{Example JSON}{\code{filtering = '[{"field":"publisher_platform","operator":"IN","value":["instagram","facebook"]}]'}}
+   }
 }
 \author{Alexey Seleznev}
 
