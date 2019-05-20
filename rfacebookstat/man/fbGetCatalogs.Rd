@@ -3,8 +3,9 @@
 \title{Get catalogs}
 \description{Load catalogs from business maneger.}
 \usage{
-fbGetCatalogs(bussiness_id = NULL, api_version = getOption("rfacebookstat.api_version"),
-                   access_token = getOption("rfacebookstat.access_token"))
+fbGetCatalogs(bussiness_id = getOption("rfacebookstat.business_id"), 
+              api_version = getOption("rfacebookstat.api_version"),
+              access_token = getOption("rfacebookstat.access_token"))
 }
 
 \arguments{

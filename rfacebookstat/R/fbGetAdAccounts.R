@@ -1,4 +1,4 @@
-fbGetAdAccounts <- function(source_id    = NULL, 
+fbGetAdAccounts <- function(source_id    = getOption("rfacebookstat.business_id"), 
                             api_version  = getOption("rfacebookstat.api_version"), 
                             access_token = getOption("rfacebookstat.access_token")){
   

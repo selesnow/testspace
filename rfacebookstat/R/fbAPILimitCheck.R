@@ -4,7 +4,7 @@ print.fblimits <- function(x) {
 }
 
 
-fbAPILimitCheck <- function( api_answer, console_type, pb, pb_step, accounts_id, dates_df ) {
+fbAPILimitCheck <- function( api_answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time ) {
   
   rep_query <- FALSE
   

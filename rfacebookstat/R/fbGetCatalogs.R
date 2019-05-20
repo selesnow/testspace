@@ -1,4 +1,4 @@
-fbGetCatalogs <- function(business_id  = NULL ,
+fbGetCatalogs <- function(business_id  = getOption("rfacebookstat.business_id") ,
                           api_version  = getOption("rfacebookstat.api_version"),
                           access_token = getOption("rfacebookstat.access_token")) {
   

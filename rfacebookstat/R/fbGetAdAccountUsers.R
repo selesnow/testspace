@@ -1,8 +1,8 @@
 fbGetAdAccountUsers <- function(accounts_id  = getOption("rfacebookstat.accounts_id") ,
-                                 business_id  = NULL,
-                                 api_version  = getOption("rfacebookstat.api_version"),
-                                 console_type = "progressbar",
-                                 access_token = getOption("rfacebookstat.access_token")){
+                                business_id  = getOption("rfacebookstat.business_id"),
+                                api_version  = getOption("rfacebookstat.api_version"),
+                                console_type = "progressbar",
+                                access_token = getOption("rfacebookstat.access_token")){
   
   if(is.null(accounts_id)|is.null(access_token)){
     stop("Arguments accounts_id and access_token is require.")

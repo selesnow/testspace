@@ -112,7 +112,7 @@ fbGetMarketingStat <-
                                          limit              = 5000,
                                          access_token       = access_token))
         # check limit
-        queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df )
+        queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time  )
         
         # reapet query if out of apilimit
         while ( queryrep ) {
@@ -129,7 +129,7 @@ fbGetMarketingStat <-
                                            limit              = 5000,
                                            access_token       = access_token))
           
-          queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df )
+          queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
         }
         
         request_counter <- request_counter + 1
@@ -227,7 +227,7 @@ fbGetMarketingStat <-
           answer <- httr::GET(QueryString)
           
           # check limit
-          queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df )
+          queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
           
           # reapet query if out of apilimit
           while ( queryrep ) {
@@ -244,7 +244,7 @@ fbGetMarketingStat <-
                                              limit              = 5000,
                                              access_token       = access_token))
             
-            queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df )
+            queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
           }
           
           request_counter <- request_counter + 1

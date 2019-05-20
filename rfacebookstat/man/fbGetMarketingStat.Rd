@@ -38,6 +38,35 @@ fbGetMarketingStat(
 \details{
 Console_type parameters, if chose "progressbar" you can see load progress in percent, and if chose "message" you get message about loading process.
 }
+
+\section{Breackdowns}{
+Allowed values for breakdowns.
+\itemize{
+  \item ad_format_asset
+  \item age
+  \item body_asset
+  \item call_to_action_asset
+  \item country
+  \item description_asset
+  \item gender
+  \item image_asset
+  \item impression_device
+  \item link_url_asset
+  \item product_id
+  \item region
+  \item title_asset
+  \item video_asset
+  \item dma
+  \item frequency_value
+  \item hourly_stats_aggregated_by_advertiser_time_zone
+  \item hourly_stats_aggregated_by_audience_time_zone
+  \item place_page_id
+  \item publisher_platform
+  \item platform_position
+  \item device_platform
+ }
+}
+
 \section{Action breackdowns}{
 Group results in the actions field. You can use the following breakdowns for action_breakdowns.
 Now you can use next action breakdowns:
@@ -48,9 +77,20 @@ Now you can use next action breakdowns:
   \item{action_target_id}{The id of destination where people go after clicking on your ad. This could be your Facebook Page, an external URL for your conversion pixel or an app configured with the software development kit (SDK).}
   \item{action_type}{The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.}
   \item{action_type,action_reaction}{Together of action types and reactions brekdown.}
+ }
 }
-}
+
+\section{Filtering}{
+Filters on the report data. This parameter is an array of filter objects in JSON format.
+\describe{
+  \item{field}{Field for filtering.}
+  \item{operator}{One of EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IN_RANGE, NOT_IN_RANGE, CONTAIN, NOT_CONTAIN, IN, NOT_IN, STARTS_WITH, ANY, ALL, AFTER, BEFORE, NONE.}
+  \item{value}{Field value for filtering.}
+ }
  
+ Example: \code{filtering = "[{‘field’:’publisher_platform’,’operator’:’IN’,’value’:[‘instagram’]}]"}
+}
+
 \author{Alexey Seleznev}
 
 \seealso{

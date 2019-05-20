@@ -35,7 +35,8 @@ rfacebookstatWelcomeMessage <- function(){
   op <- options()
   op.rfacebookstat <- list(rfacebookstat.api_version  = "v3.3",
                            rfacebookstat.access_token = NULL,
-                           rfacebookstat.accounts_id  = NULL)
+                           rfacebookstat.accounts_id  = NULL,
+						   rfacebookstat.business_id  = NULL)
 					   
   toset <- !(names(op.rfacebookstat) %in% names(op))
   if (any(toset)) options(op.rfacebookstat[toset])

@@ -5,7 +5,7 @@
 \usage{
 fbGetAdAccountUsers(
     accounts_id  = getOption("rfacebookstat.accounts_id"), 
-	business_id  = NULL
+	business_id  = getOption("rfacebookstat.business_id"),
     api_version  = getOption("rfacebookstat.api_version"), 
 	console_type = "progressbar", 
 	access_token = getOption("rfacebookstat.access_token"))
