@@ -24,7 +24,7 @@ fbGetCatalogs <- function(business_id  = getOption("rfacebookstat.business_id") 
                                      name = .x$name)) %>%
                             mutate(catalog_typr = "owner")
  
-  QueryString <- paste0("https://graph.facebook.com/",api_version,"/",source_id,"/client_product_catalogs?limit=1500&access_token=",access_token)
+  QueryString <- paste0("https://graph.facebook.com/",api_version,"/",business_id,"/client_product_catalogs?limit=1500&access_token=",access_token)
   answer_client_product_catalogs <- httr::GET(QueryString)
   content_client_product_catalogs <- content(answer_client_product_catalogs)
   
