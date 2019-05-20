@@ -16,7 +16,7 @@ fbGetCatalogs <- function(business_id  = getOption("rfacebookstat.business_id") 
     factor_change <- TRUE
   }
   
-  QueryString <- paste0("https://graph.facebook.com/",api_version,"/",source_id,"/owned_product_catalogs?limit=1500&access_token=",access_token)
+  QueryString <- paste0("https://graph.facebook.com/",api_version,"/",business_id,"/owned_product_catalogs?limit=1500&access_token=",access_token)
   answer_owned_product_catalogs <- httr::GET(QueryString)
   content_owned_product_catalogs <- content(answer_owned_product_catalogs)
   owned_product_catalogs <- map_df(content_owned_product_catalogs$data, ~ 
