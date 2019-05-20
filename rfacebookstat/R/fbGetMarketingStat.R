@@ -53,7 +53,7 @@ fbGetMarketingStat <-
         
         filters <- list()
         
-		for ( f in filstr ) {
+		for ( f in filtering ) {
 		  temp_fil    <- str_split(f, " ")
 		  temp_filter <- list(field    = temp_fil[[1]][1],
 							  operator = temp_fil[[1]][2])
