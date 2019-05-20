@@ -47,6 +47,31 @@ fbGetMarketingStat <-
 
     if ( is.na(answer_class) ) answer_class <- "actions"
     
+    # filters handing to JSON
+    if ( ! is.null(filtering) ) {
+      if ( ! validate(filtering)[[1]] ) {
+        
+        filters <- list()
+        
+        for ( f in filtering ) {
+          # convert filters to JSON
+          temp_filter <- str_split(f, " ")
+          temp_filter <- list(field    = temp_filter[[1]][1],
+                              operator = temp_filter[[1]][2],
+                              value    = ifelse( toupper(temp_filter[[1]][2]) %in% c("IN_RANGE", 
+                                                                                     "NOT_IN_RANGE", 
+                                                                                     "IN", 
+                                                                                     "NOT_IN"), 
+                                                 list(temp_filter[[1]][3]), 
+                                                 temp_filter[[1]][3]))
+          
+          filters <- append(filters, list(temp_filter))
+          
+        }
+        filtering <- toJSON(filters, auto_unbox = T)
+      }
+    }
+    
     if(interval == "overall"){
       dates_from <- as.Date(date_start)
       dates_to   <- as.Date(date_stop)
