@@ -52,8 +52,7 @@ fbGetMarketingStat <-
                              action_breakdowns, 
                              "actions")
     
-    #if ( is.na(answer_class) ) answer_class <- "actions"
-    answer_class <- "actions" # time test string 
+    if ( is.na(answer_class) ) answer_class <- "actions"
     
     # filters handing to JSON
     if ( ! is.null(filtering) ) {
