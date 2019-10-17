@@ -1,8 +1,8 @@
 Package: rfacebookstat
 Type: Package
 Title: Load Data from Facebook API Marketing
-Version: 1.10.1
-Date: 2019-09-10
+Version: 1.10.9000
+Date: 2019-10-17
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Load data by campaigns, ads, ad sets and insights, ad account and business manager 
