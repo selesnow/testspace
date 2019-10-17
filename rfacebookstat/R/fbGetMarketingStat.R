@@ -1,4 +1,4 @@
-fbGetMarketingStat <-    
+fbGetMarketingStat <-
   function(accounts_id        = getOption("rfacebookstat.accounts_id"),
            sorting            = NULL,
            level              = "account",
@@ -34,6 +34,12 @@ fbGetMarketingStat <-
                               "", 
                               action_breakdowns, 
                               perl = TRUE)
+    
+    if ( ! is.null(attribution_window) ) {
+      
+      attribution_window <- toJSON(attribution_window)
+      
+    }
     
     # answer object class detect
     answer_class <- ifelse ( action_breakdowns %in% c("action_device",
@@ -267,6 +273,7 @@ fbGetMarketingStat <-
                                              fields             = fields,
                                              filtering          = filtering,
                                              action_report_time = action_report_time,
+                                             action_attribution_windows = attribution_window,
                                              time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
                                              limit              = 5000,
                                              access_token       = access_token))
