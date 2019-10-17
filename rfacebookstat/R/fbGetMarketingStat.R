@@ -1,20 +1,4 @@
-fbGetMarketingStat <-
-  function(accounts_id        = getOption("rfacebookstat.accounts_id"),
-           sorting            = NULL,
-           level              = "account",
-           breakdowns         = NULL,
-           action_breakdowns  = NULL,
-           fields             = "account_id,campaign_name,impressions,clicks,reach,spend",
-           filtering          = NULL,
-           date_start         = Sys.Date() - 30,
-           date_stop          = Sys.Date(),
-           api_version        = getOption("rfacebookstat.api_version"),
-           action_report_time = NULL,
-           interval           = "day",
-           console_type       = "progressbar",
-           request_speed      = "normal",
-           access_token       = getOption("rfacebookstat.access_token")){
-    
+fbGetMarketingStat <-    
   function(accounts_id        = getOption("rfacebookstat.accounts_id"),
            sorting            = NULL,
            level              = "account",
