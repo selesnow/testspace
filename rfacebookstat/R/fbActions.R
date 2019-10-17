@@ -17,39 +17,31 @@ fbAction <- function(x, ...) {
 # ============
 # actions
 # ============
-fbAction.actions <- function( obj ) {
- 
-  # action breakdown handing
-    tempData <- list()
-    
-    for ( o1 in obj$data ) {
-      
-      if ( ! is.null(o1$actions) ) {
-        
-        r <- lapply(o1$actions, function(x) list(name = x$action_type,
-                                                 val  = x$value)) %>%
-            map_df(flatten) %>%
-            unique() %>%
-            spread(key = name, value = val)
-
-        
-        f <-  o1[! names(o1) == "actions"] %>%
-              do.call("cbind", .) %>% 
-              cbind(., r) %>%
-              lapply( as.character )
-        
-      } else {
-        f <-  o1[ ! names(o1) == "actions" ] %>%
-          bind_cols()
-      }
-      
-      tempData <- append(tempData, list(f))
-      
-    }
-    
-    #Adding data to result
-    tempData <- purrr::map_df(tempData, purrr::flatten)
-    return(tempData)
+fbAction.default <- function( obj ) {
+  
+  
+  actions <-
+    map_df(obj$data, 
+           function(.x) {
+             
+             nm <- names(.x)
+             nm <- nm[ ! nm %in% c("actions", "action_values") ]
+             
+             other_col <- .x[nm] %>% bind_rows()
+             
+             df <-
+               .x$actions %>%
+               bind_rows() %>%
+               pivot_longer(cols = -action_type,names_to = "action_sufix", values_to = "val") %>%
+               mutate(action_sufix = ifelse(action_sufix == "value", character(0), action_sufix) ) %>%
+               unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
+               replace_na(list(val = 0)) %>%
+               pivot_wider(names_from = "action_type", values_from = "val") %>%
+               bind_cols(other_col, .)
+           }
+    )
+  
+  return(actions)
 }
 
 # ============
