@@ -15,6 +15,23 @@ fbGetMarketingStat <-
            request_speed      = "normal",
            access_token       = getOption("rfacebookstat.access_token")){
     
+  function(accounts_id        = getOption("rfacebookstat.accounts_id"),
+           sorting            = NULL,
+           level              = "account",
+           breakdowns         = NULL,
+           action_breakdowns  = NULL,
+           fields             = "account_id,campaign_name,impressions,clicks,reach,spend",
+           filtering          = NULL,
+           date_start         = Sys.Date() - 30,
+           date_stop          = Sys.Date(),
+           attribution_window = NULL,
+           api_version        = getOption("rfacebookstat.api_version"),
+           action_report_time = NULL,
+           interval           = "day",
+           console_type       = "progressbar",
+           request_speed      = "normal",
+           access_token       = getOption("rfacebookstat.access_token")){
+    
     # Check start time
     start_time <- Sys.time()
     
@@ -41,10 +58,10 @@ fbGetMarketingStat <-
                                                       "action_target_id",
                                                       "action_type",
                                                       "action_type,action_reaction") &&
-                             ! is.null(action_breakdowns),
-                              action_breakdowns, 
-                              "actions")
-
+                               ! is.null(action_breakdowns),
+                             action_breakdowns, 
+                             "actions")
+    
     if ( is.na(answer_class) ) answer_class <- "actions"
     
     # filters handing to JSON
@@ -53,18 +70,18 @@ fbGetMarketingStat <-
         
         filters <- list()
         
-		for ( f in filtering ) {
-		  temp_fil    <- str_split(f, " ")
-		  temp_filter <- list(field    = temp_fil[[1]][1],
-							  operator = temp_fil[[1]][2])
-		  
-		  if ( temp_fil[[1]][2] %in% c("IN_RANGE", "NOT_IN_RANGE", "IN", "NOT_IN") ) {
-			temp_filter$value <- str_split(temp_fil[[1]][3], ",")[[1]]
-		  } else {
-			temp_filter$value <- temp_fil[[1]][3]
-		  }
-		  filters <- append(filters, list(temp_filter))
-		}
+        for ( f in filtering ) {
+          temp_fil    <- str_split(f, " ")
+          temp_filter <- list(field    = temp_fil[[1]][1],
+                              operator = temp_fil[[1]][2])
+          
+          if ( temp_fil[[1]][2] %in% c("IN_RANGE", "NOT_IN_RANGE", "IN", "NOT_IN") ) {
+            temp_filter$value <- str_split(temp_fil[[1]][3], ",")[[1]]
+          } else {
+            temp_filter$value <- temp_fil[[1]][3]
+          }
+          filters <- append(filters, list(temp_filter))
+        }
         filtering <- toJSON(filters, auto_unbox = T)
       }
     }
@@ -123,16 +140,17 @@ fbGetMarketingStat <-
         
         #Send API request
         answer <- httr::GET(QueryString,
-                            query = list(sort               = sorting,
-                                         level              = level,
-                                         breakdowns         = breakdowns,
-                                         action_breakdowns  = action_breakdowns,
-                                         fields             = fields,
-                                         filtering          = filtering,
-                                         action_report_time = action_report_time,
-                                         time_range         = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
-                                         limit              = 5000,
-                                         access_token       = access_token))
+                            query = list(sort                       = sorting,
+                                         level                      = level,
+                                         breakdowns                 = breakdowns,
+                                         action_breakdowns          = action_breakdowns,
+                                         fields                     = fields,
+                                         filtering                  = filtering,
+                                         action_report_time         = action_report_time,
+                                         action_attribution_windows = attribution_window,
+                                         time_range                 = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
+                                         limit                      = 5000,
+                                         access_token               = access_token))
         # check limit
         queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time  )
         
@@ -140,21 +158,23 @@ fbGetMarketingStat <-
         while ( queryrep ) {
           
           answer <- httr::GET(QueryString,
-                              query = list(sort               = sorting,
-                                           level              = level,
-                                           breakdowns         = breakdowns,
-                                           action_breakdowns  = action_breakdowns,
-                                           fields             = fields,
-                                           filtering          = filtering,
-                                           action_report_time = action_report_time,
-                                           time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
-                                           limit              = 5000,
-                                           access_token       = access_token))
+                              query = list(sort                       = sorting,
+                                           level                      = level,
+                                           breakdowns                 = breakdowns,
+                                           action_breakdowns          = action_breakdowns,
+                                           fields                     = fields,
+                                           filtering                  = filtering,
+                                           action_report_time         = action_report_time,
+                                           action_attribution_windows = attribution_window,
+                                           time_range                 = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
+                                           limit                      = 5000,
+                                           access_token               = access_token))
           
           queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
         }
         
         request_counter <- request_counter + 1
+        
         #Parse result
         answerobject <- httr::content(answer, as = "parsed")
         
@@ -189,6 +209,7 @@ fbGetMarketingStat <-
                                                fields             = fields,
                                                filtering          = filtering,
                                                action_report_time = action_report_time,
+                                               action_attribution_windows = attribution_window,
                                                time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
                                                limit              = 5000,
                                                access_token       = access_token))
@@ -224,7 +245,7 @@ fbGetMarketingStat <-
         
         # action breakdown handing
         if ( "actions" %in% unlist(str_split(fields, ",")) ) {
-
+          
           # switch functions
           class(answerobject) <- answer_class
           
@@ -332,10 +353,10 @@ fbGetMarketingStat <-
             tempData <- bind_rows(answerobject$data)
             result   <- rbind(result, tempData, fill = TRUE)
           }
+        }
       }
-     }
     }
-
+    
     if(console_type == "progressbar"){  
       #Progressbar close
       utils::setTxtProgressBar(pb, length(accounts_id) * nrow(dates_df))
