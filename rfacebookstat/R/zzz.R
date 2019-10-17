@@ -33,7 +33,7 @@ rfacebookstatWelcomeMessage <- function(){
     
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.rfacebookstat <- list(rfacebookstat.api_version  = "v3.3",
+  op.rfacebookstat <- list(rfacebookstat.api_version  = "v4.0",
                            rfacebookstat.access_token = NULL,
                            rfacebookstat.accounts_id  = NULL,
 						   rfacebookstat.business_id  = NULL)

@@ -8,7 +8,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  
 #  fb_data <- fbGetMarketingStat(
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  
 #  fb_data_breakdowns <- fbGetMarketingStat(
@@ -41,7 +41,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  
 #  fb_data_action_breakdowns <- fbGetMarketingStat(
@@ -58,7 +58,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  fb_data <- fbGetMarketingStat(
 #    level              = "campaign",
@@ -74,7 +74,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  fb_data <- fbGetMarketingStat(
 #    level              = "campaign",
@@ -91,7 +91,7 @@ knitr::opts_chunk$set(
 ## ------------------------------------------------------------------------
 #  library(rfacebookstat)
 #  
-#  options(rfacebookstat.access_token = "ваш токен",
+#  options(rfacebookstat.access_token = "РІР°С€ С‚РѕРєРµРЅ",
 #          rfacebookstat.accounts_id  = "act_000000000")
 #  fb_data <- fbGetMarketingStat(
 #    level              = "campaign",
