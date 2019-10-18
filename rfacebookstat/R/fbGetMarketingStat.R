@@ -42,17 +42,18 @@ fbGetMarketingStat <-
     }
     
     # answer object class detect
-    answer_class <- ifelse ( action_breakdowns %in% c("action_device",
-                                                      "action_destination",
-                                                      "action_reaction",
-                                                      "action_target_id",
-                                                      "action_type",
-                                                      "action_type,action_reaction") &&
-                               ! is.null(action_breakdowns),
-                             action_breakdowns, 
-                             "actions")
+    #answer_class <- ifelse ( action_breakdowns %in% c("action_device",
+    #                                                  "action_destination",
+    #                                                  "action_reaction",
+    #                                                  "action_target_id",
+    #                                                  "action_type",
+    #                                                  "action_type,action_reaction") &&
+    #                           ! is.null(action_breakdowns),
+    #                         action_breakdowns, 
+    #                         "actions")
     
-    if ( is.na(answer_class) ) answer_class <- "actions"
+    #if ( is.na(answer_class) ) answer_class <- "actions"
+    answer_class <- "actions"
     
     # filters handing to JSON
     if ( ! is.null(filtering) ) {
