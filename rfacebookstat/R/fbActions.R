@@ -23,26 +23,32 @@ fbAction.default <- function( obj ) {
   actions <-
     map_df(obj$data, 
            function(.x) {
-             
+             #.x = obj$data[[1]]
              nm <- names(.x)
              nm <- nm[ ! nm %in% c("actions", "action_values") ]
              
              other_col <- .x[nm] %>% bind_rows()
              
-             df <-
-               .x$actions %>%
-               bind_rows() %>%
-               pivot_longer(cols = -action_type, names_to = "action_sufix", values_to = "val") %>%
-               mutate(action_sufix = ifelse(action_sufix == "value", character(0), action_sufix) ) %>%
-               unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
-               replace_na(list(val = 0)) %>%
-               pivot_wider(names_from = "action_type", values_from = "val") %>%
-               bind_cols(other_col, .)
+             if ( length(.x$actions ) > 0 ) {
+               
+               df <-
+                 .x$actions %>%
+                 bind_rows() %>%
+                 pivot_longer(cols = -action_type, names_to = "action_sufix", values_to = "val") %>%
+                 unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
+                 replace_na(list(val = 0)) %>%
+                 pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
+                 bind_cols(other_col, .)
+               
+             } else {
+               other_col
+             }
            }
     )
   
   return(actions)
 }
+
 
 # ============
 # action_device
@@ -208,24 +214,29 @@ fbAction.action_type <- function( obj ) {
   actions <-
   map_df(obj$data, 
            function(.x) {
-          
+          #.x = obj$data[[1]]
            nm <- names(.x)
            nm <- nm[ ! nm %in% c("actions", "action_values") ]
 
            other_col <- .x[nm] %>% bind_rows()
-           
-           df <-
-           .x$actions 
-           obj$data[[1]]$actions %>%
-           bind_rows() %>%
-           pivot_longer(cols = -action_type,names_to = "action_sufix", values_to = "val") %>%
-           mutate(action_sufix = ifelse(action_sufix == "value", character(0), action_sufix) ) %>%
-           unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
-           replace_na(list(val = 0)) %>%
-           pivot_wider(names_from = "action_type", values_from = "val") %>%
-           bind_cols(other_col, .)
+
+           if ( length(.x$actions ) > 0 ) {
+             
+               df <-
+               .x$actions %>%
+               bind_rows() %>%
+               pivot_longer(cols = -action_type, names_to = "action_sufix", values_to = "val") %>%
+               unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
+               replace_na(list(val = 0)) %>%
+               pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
+               bind_cols(other_col, .)
+
+            } else {
+             other_col
+            }
            }
            )
-
+  
   return(actions)
+
 }
