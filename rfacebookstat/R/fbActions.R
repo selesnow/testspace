@@ -40,6 +40,7 @@ fbAction.default <- function( obj ) {
                  pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
                  bind_cols(other_col, .)
                
+               df <- df_actions
              } 
              
              if ( length(.x$action_values ) > 0 ) {
@@ -65,10 +66,16 @@ fbAction.default <- function( obj ) {
                
              } 
              
-             if ( length(.x$actions ) + length(.x$action_values ) == 0 ) {
+             if ( length( .x$actions ) + length( .x$action_values ) == 0 ) {
                
                other_col
+               
+             } else {
+               
+               df
+               
              }
+             
            }
     )
   
