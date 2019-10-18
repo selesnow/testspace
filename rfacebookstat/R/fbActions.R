@@ -40,7 +40,9 @@ fbAction.default <- function( obj ) {
                  pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
                  bind_cols(other_col, .)
                
-             } else if ( length(.x$action_values ) > 0 ) {
+             } 
+             
+             if ( length(.x$action_values ) > 0 ) {
                
                df_action_values <-
                  .x$action_values %>%
@@ -61,16 +63,18 @@ fbAction.default <- function( obj ) {
                    
                  }
                
-             } else {
+             } 
+             
+             if ( length(.x$actions ) + length(.x$action_values ) == 0 ) {
                
                other_col
-               
              }
            }
     )
   
   return(actions)
 }
+
 
 # ============
 # action_device
