@@ -25,7 +25,7 @@ fbAction.default <- function( obj ) {
            function(.x) {
              #.x = obj$data[[1]]
              nm <- names(.x)
-             nm <- nm[ ! nm %in% c("actions", "action_values") ]
+             nm <- nm[ ! nm %in% c("actions") ]
              
              other_col <- .x[nm] %>% bind_rows()
              
