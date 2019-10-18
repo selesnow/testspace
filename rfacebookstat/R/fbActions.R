@@ -32,13 +32,14 @@ fbAction.default <- function( obj ) {
              if ( length(.x$actions ) > 0 ) {
                
                df <-
-                 .x$actions %>%
-                 bind_rows() %>%
-                 pivot_longer(cols = -action_type, names_to = "action_sufix", values_to = "val") %>%
-                 unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
-                 replace_na(list(val = 0)) %>%
-                 pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
-                 bind_cols(other_col, .)
+                .x$actions %>%
+                bind_rows() %>%
+                pivot_longer(cols = -matches("action\\_.*" ), names_to = "action_sufix", values_to = "val") %>%
+                #unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
+                unite(action_type, matches("action\\_.*" ), remove = T) %>%
+                replace_na(list(val = 0)) %>%
+                pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
+                bind_cols(other_col, .)
                
              } else {
                other_col
