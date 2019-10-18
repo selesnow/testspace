@@ -349,6 +349,24 @@ fbGetMarketingStat <-
       }
     }
     
+    # prepare output
+    # unnesting_values
+    vlist <- select_if(result, is.list) %>% names()
+
+    for ( l in vlist ) {
+
+      result <- unnest_wider(result, l, names_sep = "_") %>%
+                      select(-matches("^,*\\_action\\_type"))
+
+    }
+
+    # renaming
+    newnames <- names(result) %>%
+                str_remove_all("NA") %>%
+                str_replace("\\_\\_", "\\_")
+   
+    names(result) <- newnames
+    
     if(console_type == "progressbar"){  
       #Progressbar close
       utils::setTxtProgressBar(pb, length(accounts_id) * nrow(dates_df))
