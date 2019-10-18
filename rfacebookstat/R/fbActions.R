@@ -23,33 +23,54 @@ fbAction.default <- function( obj ) {
   actions <-
     map_df(obj$data, 
            function(.x) {
-             #.x = obj$data[[1]]
+
              nm <- names(.x)
-             nm <- nm[ ! nm %in% c("actions") ]
+             nm <- nm[ ! nm %in% c("actions", "action_values") ]
              
              other_col <- .x[nm] %>% bind_rows()
              
              if ( length(.x$actions ) > 0 ) {
                
-               df <-
-                .x$actions %>%
-                bind_rows() %>%
-                pivot_longer(cols = -matches("action\\_.*" ), names_to = "action_sufix", values_to = "val") %>%
-                #unite(action_type, c("action_type", "action_sufix"), remove = T) %>%
-                unite(action_type, matches("action\\_.*" ), remove = T) %>%
-                replace_na(list(val = 0)) %>%
-                pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
-                bind_cols(other_col, .)
+               df_actions <-
+                 .x$actions %>%
+                 bind_rows() %>%
+                 pivot_longer(cols = -matches("action\\_.*" ), names_to = "action_sufix", values_to = "val") %>%
+                 unite(action_type, matches("action\\_.*" ), remove = T) %>%
+                 replace_na(list(val = 0)) %>%
+                 pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) %>%
+                 bind_cols(other_col, .)
+               
+             } else if ( length(.x$action_values ) > 0 ) {
+               
+               df_action_values <-
+                 .x$action_values %>%
+                 bind_rows() %>%
+                 pivot_longer(cols = -matches("action\\_.*" ), names_to = "action_sufix", values_to = "val") %>%
+                 mutate(action_type = paste0("action_values.", action_type)) %>%
+                 unite(action_type, matches("action\\_.*" ), remove = T) %>%
+                 replace_na(list(val = 0)) %>%
+                 pivot_wider(names_from = "action_type", values_from = "val", values_fill = list("val" = "0")) 
+               
+                 if ( exists("df_actions") ) {
+                   
+                   df <- bind_cols(df_actions, df_action_values) 
+                   
+                 } else {
+                   
+                   df <- bind_cols(other_col, df_action_values) 
+                   
+                 }
                
              } else {
+               
                other_col
+               
              }
            }
     )
   
   return(actions)
 }
-
 
 # ============
 # action_device
