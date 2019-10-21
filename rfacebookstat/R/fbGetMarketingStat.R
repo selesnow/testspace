@@ -356,7 +356,7 @@ fbGetMarketingStat <-
     for ( l in vlist ) {
 
       result <- unnest_wider(result, l, names_sep = "_") %>%
-                      select(-matches("^,*\\_action\\_type"))
+                      select(-matches("^.*\\_action\\_type"))
 
     }
 
