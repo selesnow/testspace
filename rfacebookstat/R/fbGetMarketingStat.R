@@ -260,7 +260,7 @@ fbGetMarketingStat <-
           #Adding data to result
           tempData <- fbAction(answerobject)
           
-          result   <- rbind(result, tempData, fill = TRUE)
+          result   <- bind_rows(result, tempData)
           
           if (exists("tempData")) {
             rm(tempData)
@@ -269,7 +269,7 @@ fbGetMarketingStat <-
         } else {
           #Adding data to result
           tempData <- bind_rows(answerobject$data)
-          result   <- rbind(result, tempData, fill = TRUE)
+          result   <- bind_rows(result, tempData)
         }
         
         #Pagination
@@ -355,7 +355,7 @@ fbGetMarketingStat <-
             #Adding data to result
             tempData <- fbAction(answerobject)
             
-            result   <- rbind(result, tempData, fill = TRUE)
+            result   <- bind_rows(result, tempData)
             
             if (exists("tempData")) {
               rm(tempData)
@@ -364,7 +364,7 @@ fbGetMarketingStat <-
           } else {
             #Adding data to result
             tempData <- bind_rows(answerobject$data)
-            result   <- rbind(result, tempData, fill = TRUE)
+            result   <- bind_rows(result, tempData,)
           }
         }
       }
