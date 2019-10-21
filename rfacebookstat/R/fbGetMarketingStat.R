@@ -20,9 +20,13 @@ fbGetMarketingStat <-
     start_time <- Sys.time()
     
     # Create result DF
-    result <- data.table()
+    result <- tibble()
     
+    # attributes
+    rq_ids      <- list()
+    out_headers <- list()
     
+    # 
     # clear field list
     fields <- gsub("[\\s\\n\\t]", 
                    "", 
@@ -142,6 +146,11 @@ fbGetMarketingStat <-
                                          time_range                 = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
                                          limit                      = 5000,
                                          access_token               = access_token))
+        
+        # attr
+        rq_ids      <- append(rq_ids, setNames(list(status_code(answer)), answer$headers$`x-fb-trace-id`))
+        out_headers <- out_headers <- append(out_headers, setNames(list(headers(answer)), answer$headers$`x-fb-trace-id`))
+        
         # check limit
         queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time  )
         
@@ -160,6 +169,10 @@ fbGetMarketingStat <-
                                            time_range                 = str_interp("{\"since\":\"${dates_df$dates_from[dt]}\",\"until\":\"${dates_df$dates_to[dt]}\"}"),
                                            limit                      = 5000,
                                            access_token               = access_token))
+          
+          # attr
+          rq_ids      <- append(rq_ids, setNames(list(status_code(answer)), answer$headers$`x-fb-trace-id`))
+          out_headers <- out_headers <- append(out_headers, setNames(list(headers(answer)), answer$headers$`x-fb-trace-id`))
           
           queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
         }
@@ -204,6 +217,10 @@ fbGetMarketingStat <-
                                                time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
                                                limit              = 5000,
                                                access_token       = access_token))
+              
+            # attr
+            rq_ids      <- append(rq_ids, setNames(list(status_code(answer)), answer$headers$`x-fb-trace-id`))
+            out_headers <- out_headers <- append(out_headers, setNames(list(headers(answer)), answer$headers$`x-fb-trace-id`))
               
               request_counter <- request_counter + 1
               answerobject <- httr::content(answer, as = "parsed")
@@ -278,6 +295,10 @@ fbGetMarketingStat <-
                                              time_range         = str_interp("{\"since\":\"${date_start}\",\"until\":\"${date_stop}\"}"),
                                              limit              = 5000,
                                              access_token       = access_token))
+            
+            # attr
+            rq_ids      <- append(rq_ids, setNames(list(status_code(answer)), answer$headers$`x-fb-trace-id`))
+            out_headers <- out_headers <- append(out_headers, setNames(list(headers(answer)), answer$headers$`x-fb-trace-id`))
             
             queryrep <- fbAPILimitCheck( answer, console_type, pb, pb_step, accounts_id, dates_df, pause_time )
           }
@@ -367,6 +388,10 @@ fbGetMarketingStat <-
                 str_replace("\\_\\_", "\\_")
    
     names(result) <- newnames
+    
+    # set attributes
+    attr(result, "request_ids") <- rq_ids
+    attr(result, "headers")     <- out_headers
     
     if(console_type == "progressbar"){  
       #Progressbar close
