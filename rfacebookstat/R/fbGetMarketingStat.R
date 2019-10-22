@@ -385,7 +385,8 @@ fbGetMarketingStat <-
     newnames <- names(result) %>%
                 str_remove_all("NA") %>%
                 str_remove("^\\_") %>%
-                str_replace("\\_\\_", "\\_")
+                str_replace("\\_\\_", "\\_") %>%
+                str_remove("\\_value$")
    
     names(result) <- newnames
     
